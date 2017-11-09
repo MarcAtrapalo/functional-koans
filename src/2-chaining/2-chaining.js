@@ -6,9 +6,10 @@ export function getOrderPrice(orderId) {
         .catch(e => '0');
 }
 
-const hasItemId = (itemId) => (line) => line.item === itemId;
 
 export function getItemRemainingStock(orderId, itemId) {
+    const hasItemId = (itemId) => (line) => line.item === itemId;
+
     return API.getOrder(orderId)
         .then(({lines}) => lines && lines.length > 0 ? lines.find(hasItemId(itemId)) : null)
         .then(line => {
