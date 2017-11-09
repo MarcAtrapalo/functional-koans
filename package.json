@@ -1,0 +1,22 @@
+{
+  "name": "promises-workshop",
+  "version": "1.0.0",
+  "description": "Workshop for practicing ES6 promises, based on https://github.com/asakusuma/promise-workshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha-webpack --watch 'src/**/*.spec.js' "
+  },
+  "keywords": [
+    "es6",
+    "promises"
+  ],
+  "author": "Marc Rodriguez",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^4.0.1",
+    "mocha-webpack": "^1.0.1",
+    "webpack": "^3.8.1"
+  }
+}
