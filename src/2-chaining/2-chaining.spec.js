@@ -12,7 +12,7 @@ describe('2. Chaining', () => {
         return expect(getOrderPrice(2)).to.eventually.equal('0');
     });
 
-    it('getItemRemainingStock should return current item stock minus ordered amount', () => {
-        return expect(getItemRemainingStock((0, 0)))
+    it.only('getItemRemainingStock should return current item stock minus ordered amount', () => {
+        return expect(getItemRemainingStock(0, 0)).to.eventually.equal(3);
     });
 });
