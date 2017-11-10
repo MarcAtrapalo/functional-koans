@@ -1,12 +1,9 @@
 import * as API from '../client';
 
 export function helloWorld() {
-    return new Promise(resolve =>
-        resolve('Hello World!')
-    );
+    // TODO
 }
 
 export function helloYou(name) {
-    return API.getHello()
-        .then(hello => hello + name);
+    // TODO
 }
