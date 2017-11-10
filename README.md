@@ -19,7 +19,7 @@ $ cd promises-workshop
 $ npm install
 ```
 
-If you want to test the exercises, just executing this command will execute the tests and leave them watching changes:
+If you want to test the exercises, just executing this command will execute the tests:
 
 ```
 $ npm test
@@ -27,3 +27,11 @@ $ npm test
 
 ## Exercises
 Each exercise's goals are described within the tests. Try to make the tests pass!
+
+Note you can run just the tests for one exercise by suffixing the `describe` block with `.only` as follows:
+
+```javascript
+describe.only('1. Hello World', () => {
+    ...
+});
+```

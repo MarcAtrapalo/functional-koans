@@ -4,7 +4,7 @@
   "description": "Workshop for practicing ES6 promises, based on https://github.com/asakusuma/promise-workshop",
   "main": "index.js",
   "scripts": {
-    "test": "mocha-webpack --watch 'src/**/*.spec.js' "
+    "test": "mocha-webpack 'src/**/*.spec.js'"
   },
   "keywords": [
     "es6",
