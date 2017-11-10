@@ -1,7 +1,7 @@
 import chai, {expect} from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 chai.use(chaiAsPromised);
-import {getItemRemainingStock, getOrderPrice} from './2-chaining';
+import {getOrderPrice, getItemRemainingStock} from './2-chaining';
 
 describe('2. Chaining', () => {
     it('getOrderPrice should return the formatted order price as "{amount} {currency}"', () => {
@@ -12,7 +12,7 @@ describe('2. Chaining', () => {
         return expect(getOrderPrice(2)).to.eventually.equal('0');
     });
 
-    it.only('getItemRemainingStock should return current item stock minus ordered amount', () => {
+    it('getItemRemainingStock should return current item stock minus ordered amount', () => {
         return expect(getItemRemainingStock(0, 0)).to.eventually.equal(3);
     });
 });

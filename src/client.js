@@ -38,6 +38,17 @@ export const items = [
     }
 ];
 
+export let probeForGetHello = false;
+
+export function getHello() {
+    probeForGetHello = true;
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve('Hello ');
+        }, 70);
+    });
+}
+
 export function getOrder(orderId) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
