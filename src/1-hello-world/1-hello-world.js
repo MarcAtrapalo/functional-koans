@@ -1,3 +1,5 @@
 export default function helloWorld() {
-    // TODO
+    return new Promise(resolve =>
+        resolve('Hello World!')
+    );
 }
