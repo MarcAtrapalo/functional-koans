@@ -1,14 +1,14 @@
 {
-  "name": "functional-workshop",
+  "name": "functional-koans",
   "version": "1.0.0",
-  "description": "Workshop for practicing ES6 promises, based on https://github.com/asakusuma/promise-workshop",
+  "description": "Koans for practicing functional programming basics in ES6",
   "main": "index.js",
   "scripts": {
     "test": "mocha-webpack 'src/**/*.spec.js'"
   },
   "keywords": [
     "es6",
-    "promises"
+    "fp"
   ],
   "author": "Marc Rodriguez",
   "license": "MIT",

@@ -44,7 +44,6 @@ describe('4 - Filter, Map, and Reduce', () => {
         const square = FILL_ME_IN;
         const squaredIds = FILL_ME_IN;
 
-        console.log(listOfIds.map(x => x * x));
         expect(square(2)).to.equal(4);
         expect(squaredIds).to.deep.equal([9, 36, 361, 64, 1, 4, 169]);
     });
