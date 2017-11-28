@@ -7,10 +7,10 @@ describe('3 - Immutability', () => {
         let test = [1, 12, undefined, 4, 8, 30, 5];
         let error = false;
 
-        function getMax(arr) {
-            let max = test[0];
+        function getMax(arr, initialMax) {
+            let max = initialMax;
             try {
-                for (let i = 1; i < test.length; i++) {
+                for (let i = 0; i < test.length; i++) {
                     if (typeof test[i] === 'undefined') throw new Error('undefined values in array');
                     if (test[i] > max) max = test[i];
                 }
@@ -18,11 +18,11 @@ describe('3 - Immutability', () => {
             catch (e) {
                 error = true;
             }
-            return max;
+            return {max, error};
         }
 
-        expect(getMax(test)).to.equal(30);
-        expect(error).to.equal(true);
+        expect(getMax(test, 0).error).to.equal(true);
+        expect(getMax(test, 0).max).to.equal(30);
     });
 
     it('Const does not protect objects from being modified', () => {
