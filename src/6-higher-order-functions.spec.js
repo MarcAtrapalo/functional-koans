@@ -27,7 +27,7 @@ describe('6 - Higher Order Functions', () => {
         expect(FILL_ME_IN).to.equal(3);
     });
 
-    it.only('Function composition and other HOFs can be useful to achieve Readability Level AWESOME', () => {
+    it('Function composition and other HOFs can be useful to achieve Readability Level AWESOME', () => {
         const developers = [
             {id: 1, role: 'backend', usesHalfTheLibraries: true},
             {id: 2, role: 'backend', usesHalfTheLibraries: false},
