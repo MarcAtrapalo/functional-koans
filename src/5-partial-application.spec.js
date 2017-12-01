@@ -77,4 +77,14 @@ describe('5 - Partial Application', () => {
             add(2)(3)(8)
         );
     });
+
+    it('Curried functions do not support optional parameters', () => {
+        const add = curry((a, b, c) => (
+            c
+                ? (a + b + c)
+                : (a + b)
+        ));
+
+        expect(FILL_ME_IN).to.equal(2);
+    });
 });
