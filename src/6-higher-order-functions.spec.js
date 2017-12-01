@@ -56,7 +56,7 @@ describe('6 - Higher Order Functions', () => {
         const toLibsUsed = (developer) => libraryUsageByDeveloper(developer)(developer.libs);
         const toDeveloperWithLibs = (developer) => ({...developer, libs: librariesHeNeeds(developer)});
 
-        const developerToLibs = flow(toDeveloperWithLibs, toLibsUsed);
+        const developerToLibs = FILL_ME_IN;
 
         const meanLibrariesUsed = sumToMean(
             developers.map(developerToLibs).reduce(totalSum, {num: 0, total: 0})
