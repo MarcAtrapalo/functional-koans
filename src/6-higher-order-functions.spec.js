@@ -1,4 +1,5 @@
 import {expect} from 'chai';
+import curry from 'lodash/curry';
 import flow from 'lodash/flow';
 
 const FILL_ME_IN = undefined;
@@ -26,7 +27,7 @@ describe('6 - Higher Order Functions', () => {
         expect(FILL_ME_IN).to.equal(3);
     });
 
-    it('Function composition and other HOFs can be useful to achieve Readability Level AWESOME', () => {
+    it.only('Function composition and other HOFs can be useful to achieve Readability Level AWESOME', () => {
         const developers = [
             {id: 1, role: 'backend', usesHalfTheLibraries: true},
             {id: 2, role: 'backend', usesHalfTheLibraries: false},
@@ -46,12 +47,21 @@ describe('6 - Higher Order Functions', () => {
         const half = FILL_ME_IN;                    // number => number
         const identity = FILL_ME_IN;                // number => number
         const when = FILL_ME_IN;                    // (condition, thenFunc, elseFunc) => dev => func
+        const libraryUsageByDeveloper = when(FILL_ME_IN);
+
         const librariesHeNeeds = FILL_ME_IN;        // dev => number
         const totalSum = FILL_ME_IN;                // (acc, number) => acc
         const sumToMean = FILL_ME_IN;               // {num, total} => number
 
-        const librariesUsedByDeveloper = when(usesHalfTheLibraries, half, identity);
-        const toLibraries = (developer) => flow(librariesHeNeeds, librariesUsedByDeveloper(developer));
-        const meanLibrariesUsed = developers.map(toLibraries).reduce(totalSum).map(sumToMean);
+        const toLibsUsed = (developer) => libraryUsageByDeveloper(developer)(developer.libs);
+        const toDeveloperWithLibs = (developer) => ({...developer, libs: librariesHeNeeds(developer)});
+
+        const developerToLibs = flow(toDeveloperWithLibs, toLibsUsed);
+
+        const meanLibrariesUsed = sumToMean(
+            developers.map(developerToLibs).reduce(totalSum, {num: 0, total: 0})
+        );
+
+        expect(meanLibrariesUsed).to.equal(416673.5);
     });
 });
