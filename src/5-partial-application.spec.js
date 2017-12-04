@@ -6,7 +6,7 @@ const FILL_ME_IN = undefined;
 describe('5 - Partial Application', () => {
     it('A function can return another function', () => {
         const f = () => {
-            return FILL_ME_IN;
+            return () => 'hello world';
         };
 
         expect(f()()).to.equal('hello world');
@@ -14,7 +14,7 @@ describe('5 - Partial Application', () => {
 
     it('The function inside can access the arguments of the one in the outside. That is called closure', () => {
         const add = (a) => {
-            return FILL_ME_IN;
+            return (b) => a + b;
         };
 
         expect(add(4)(6)).to.equal(10);
@@ -23,7 +23,7 @@ describe('5 - Partial Application', () => {
     it('A function works the same way whether if it takes all arguments at once, or one by one', () => {
         const f = (a, b, c) => a + b + c;
 
-        const g = FILL_ME_IN;
+        const g = a => b => c => a + b + c;
 
         expect(
             f('he', 'll', 'o')
@@ -34,8 +34,8 @@ describe('5 - Partial Application', () => {
 
     it('Partial application is giving some arguments to a function and getting in return a function that expects the rest of the arguments', () => {
         const add = (a) => (b) => (c) => a + b + c;
-        const add5 = FILL_ME_IN;
-        const add5and4 = FILL_ME_IN;
+        const add5 = add(5);
+        const add5and4 = add(5)(4);
 
         expect(add5(3)(2)).to.equal(10);
         expect(add5and4(10)).to.equal(19);
@@ -44,7 +44,7 @@ describe('5 - Partial Application', () => {
     it('Partial application is useful for filters', () => {
         const nums = [2, 5, 11, 32, 4, 7];
 
-        const higherThan = FILL_ME_IN;
+        const higherThan = a => b => b > a;
 
         expect(nums.filter(higherThan(10))).to.deep.equal([11, 32]);
     });
@@ -59,13 +59,13 @@ describe('5 - Partial Application', () => {
             {id: 6, role: 'frontend'},
         ];
 
-        const developerTo = FILL_ME_IN;
+        const developerTo = param => developer => developer[param];
 
         expect(developers.map(developerTo('id'))).to.deep.equal([1, 2, 3, 4, 5, 6]);
     });
 
     it('Declaring functions this way is painful. We can curry them instead', () => {
-        const add = curry(FILL_ME_IN);
+        const add = curry((a, b, c) => a + b + c);
 
         expect(
             add(2, 3, 8)
@@ -85,6 +85,6 @@ describe('5 - Partial Application', () => {
                 : (a + b)
         ));
 
-        expect(FILL_ME_IN).to.equal(2);
+        expect(add(1, 1, undefined)).to.equal(2);
     });
 });

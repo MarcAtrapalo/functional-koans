@@ -6,13 +6,13 @@ const FILL_ME_IN = undefined;
 
 describe('6 - Higher Order Functions', () => {
     it('A function that takes a function and returns a new function is called HOF', () => {
-        const not = FILL_ME_IN;
+        const not = a => (...r) => !a(...r);
 
         expect(not(x => x > 10)(15)).to.be.false;
     });
 
     it('The most classical HOF is compose. compose(f, g)(x) == f(g(x))', () => {
-        const compose = FILL_ME_IN;
+        const compose = (f, g) => (...args) => f(g(...args));
 
         const addOne = x => x + 1;
         const timesTwo = x => x * 2;
@@ -24,7 +24,7 @@ describe('6 - Higher Order Functions', () => {
         const addOne = x => x + 1;
         const timesTwo = x => x * 2;
 
-        expect(FILL_ME_IN).to.equal(3);
+        expect(composeRight(timesTwo, addOne)(1)).to.equal(3);
     });
 
     it('Function composition and other HOFs can be useful to achieve Readability Level AWESOME', () => {
@@ -43,20 +43,20 @@ describe('6 - Higher Order Functions', () => {
             fullstack: 1000014,
         };
 
-        const usesHalfTheLibraries = FILL_ME_IN;    // dev => bool
-        const half = FILL_ME_IN;                    // number => number
-        const identity = FILL_ME_IN;                // number => number
-        const when = FILL_ME_IN;                    // (condition, thenFunc, elseFunc) => dev => func
-        const libraryUsageByDeveloper = when(FILL_ME_IN);
+        const usesHalfTheLibraries = dev => dev.usesHalfTheLibraries;    // dev => bool
+        const half = x => Math.floor(x / 2);                    // number => number
+        const identity = x => x;                // number => number
+        const when = (cond, then, elze) => (...args) => cond(...args) ? then : elze; // (condition, thenFunc, elseFunc) => dev => func
+        const libraryUsageByDeveloper = when(usesHalfTheLibraries, half, identity);
 
-        const librariesHeNeeds = FILL_ME_IN;        // dev => number
-        const totalSum = FILL_ME_IN;                // (acc, number) => acc
-        const sumToMean = FILL_ME_IN;               // {num, total} => number
+        const librariesHeNeeds = dev => librariesNeeded[dev.role];        // dev => number
+        const totalSum = ({num, total}, x) => ({num: num + x, total: total + 1}); // (acc, number) => acc
+        const sumToMean = ({num, total}) => num / total;               // {num, total} => number
 
         const toLibsUsed = (developer) => libraryUsageByDeveloper(developer)(developer.libs);
         const toDeveloperWithLibs = (developer) => ({...developer, libs: librariesHeNeeds(developer)});
 
-        const developerToLibs = FILL_ME_IN;
+        const developerToLibs = flow(toDeveloperWithLibs, toLibsUsed);
 
         const meanLibrariesUsed = sumToMean(
             developers.map(developerToLibs).reduce(totalSum, {num: 0, total: 0})
