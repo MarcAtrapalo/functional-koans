@@ -3,14 +3,18 @@ import * as sinon from 'sinon';
 
 describe('2 - Purity', () => {
     it('In order to be pure, a function must be deterministic', () => {
-        const increment = (a) => ++a;
+        let counter = 0;
+        const increment = (a) => {
+            counter = counter + a;
+            return counter;
+        };
         expect(increment(1)).to.equal(increment(1));
     });
 
     it('In order to be pure, a function must also have no side effects', () => {
         let counter = 0;
         const increment = () => {
-            return counter + 1;
+            counter++;
         };
 
         const counterAtBeginning = counter;
@@ -20,15 +24,8 @@ describe('2 - Purity', () => {
 
     it('Not all functions can be effect-free, but effects are better left apart', () => {
         const add = (a, b) => {
-            return a + b;
+            console.log(a + b);
         };
-
-        const log = (a) => {
-            console.log(a);
-            return a;
-        };
-
-        const addAndLog = (a, b) => log(add(a, b));
 
         const consoleLog = sinon.spy(console, 'log');
         expect(add(1, 2)).to.equal(3);
